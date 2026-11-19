@@ -1,0 +1,6 @@
+<div class="page-head"><div><h1>Clientes</h1><p>Cadastre e acompanhe as empresas atendidas.</p></div><a class="btn" href="/clientes/novo">+ Novo cliente</a></div>
+<form class="filters" method="get"><input name="q" placeholder="Buscar por nome, CNPJ ou e-mail" value="<?=e($q)?>"><button class="btn">Buscar</button><a class="btn secondary" href="/clientes">Limpar</a></form>
+<section class="panel"><div class="table-wrap"><table><thead><tr><th>Cliente</th><th>CNPJ/CPF</th><th>E-mail</th><th>Obrigações</th><th>Ações</th></tr></thead><tbody>
+<?php foreach($items as $c): ?><tr><td><?=e($c['nome'])?></td><td><?=e($c['cnpj'])?></td><td><?=e($c['email'])?></td><td><?= (int)$c['total_obrigacoes']?></td><td class="actions"><a href="/clientes/editar?id=<?=$c['id']?>">Editar</a><form method="post" action="/clientes/excluir" onsubmit="return confirm('Excluir este cliente? As obrigações vinculadas também serão removidas.');"><?=csrf_field()?><input type="hidden" name="id" value="<?=$c['id']?>"><button class="link">Excluir</button></form></td></tr><?php endforeach;?>
+<?php if(!$items):?><tr><td colspan="5">Nenhum cliente encontrado.</td></tr><?php endif;?></tbody></table></div>
+<div class="pagination"><?php for($i=1;$i<=$pages;$i++):?><a class="<?=$i===$page?'active':''?>" href="<?=e(page_url(['page'=>$i]))?>"><?=$i?></a><?php endfor;?></div></section>

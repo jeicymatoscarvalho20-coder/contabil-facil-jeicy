@@ -1,0 +1,1 @@
+<div class="panel"><h1>Página não encontrada</h1><p>O endereço informado não existe.</p><a class="btn" href="/">Voltar ao painel</a></div>
